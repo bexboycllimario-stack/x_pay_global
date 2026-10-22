@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>X-PAY GLOBAL — Powered by NØIIR</title>
+<style>
+:root{--navy:#07122b;--panel:#10254b;--gold:#e8b748;--blue:#00b0ff;--white:#f5f8ff;--muted:#aebed8;--line:#29446e}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#050b1b,#0a1b3a);color:var(--white);font-family:Inter,Arial,sans-serif;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:12px 16px;font-weight:700;background:var(--blue);color:#031127}button.secondary{background:transparent;color:var(--white);border:1px solid var(--line)}button.gold{background:var(--gold);color:#16120a}
+.wrap{max-width:1200px;margin:auto;padding:22px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:12px 0 24px}.brand{font-size:24px;font-weight:900;letter-spacing:.5px}.brand span{color:var(--gold)}.powered{font-size:11px;color:var(--blue);letter-spacing:2px;margin-top:5px}.badge{font-size:11px;color:#ffdf8b;border:1px solid #6f5b27;border-radius:99px;padding:8px 12px}
+.layout{display:grid;grid-template-columns:220px 1fr;gap:22px}.side,.card{background:rgba(16,37,75,.88);border:1px solid var(--line);border-radius:20px}.side{padding:14px;height:max-content}.nav{display:block;width:100%;text-align:left;margin:4px 0;background:transparent;color:var(--muted);border:1px solid transparent}.nav.active,.nav:hover{background:#18345f;color:white;border-color:#2e5289}
+main{min-width:0}.heading{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 18px}.heading h1{font-size:clamp(25px,4vw,36px);margin:0}.sub{color:var(--muted);font-size:14px;margin-top:8px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{padding:20px}.label{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:1px}.amount{font-size:clamp(23px,3vw,31px);font-weight:800;margin:12px 0 5px}.goldtxt{color:var(--gold)}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 20px}.section-title{font-size:18px;margin:22px 0 12px}.tx{display:flex;justify-content:space-between;gap:12px;align-items:center;border-top:1px solid var(--line);padding:14px 0}.tx:first-of-type{border-top:0}.tx small{display:block;color:var(--muted);margin-top:5px}.pill{font-size:11px;border-radius:99px;background:#173d49;color:#90f1cb;padding:5px 9px}
+.notice{border:1px solid #6f5b27;background:#2b2515;color:#ffdf8b;padding:13px 15px;border-radius:14px;font-size:12px;line-height:1.5;margin:16px 0}
+.two{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}.hidden{display:none!important}.field{display:flex;flex-direction:column;gap:7px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}input,select{background:#071630;color:white;border:1px solid var(--line);border-radius:10px;padding:12px;width:100%;outline:none}input:focus,select:focus{border-color:var(--blue)}.formrow{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status{color:var(--muted);font-size:12px;line-height:1.5}.chat{height:260px;overflow:auto;background:#071630;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px}.bubble{padding:10px 12px;border-radius:12px;background:#17345e;margin:8px 0;max-width:95%;font-size:13px;line-height:1.5}.bubble.me{background:#0b4161;margin-left:auto}.footer{color:#7187aa;font-size:11px;text-align:center;margin:26px 0 10px}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.side{display:flex;overflow:auto;gap:5px}.nav{white-space:nowrap;width:auto}.grid{grid-template-columns:1fr}.two{grid-template-columns:1fr}.wrap{padding:14px}.card{padding:16px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+  <div><div class="brand">X-PAY <span>GLOBAL</span></div><div class="powered">POWERED BY NØIIR</div></div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="badge">PROTÓTIPO FUNCIONAL · MODO DEMONSTRAÇÃO</span><button class="secondary" id="resetBtn">Reiniciar demonstração</button></div>
+</header>
+<div class="notice"><b>Importante:</b> esta versão demonstra a experiência do produto com dados fictícios. Não guarda dinheiro nem executa pagamentos reais, transferências bancárias, operações Visa, câmbio ou autenticação de produção.</div>
+<div class="layout">
+<aside class="side">
+<button class="nav active" data-page="home">◈ Visão geral</button>
+<button class="nav" data-page="transfer">↗ Transferências</button>
+<button class="nav" data-page="cards">▣ Cartões</button>
+<button class="nav" data-page="assistant">✦ Assistente IA</button>
+<button class="nav" data-page="settings">⚙ Perfil e segurança</button>
+</aside>
+<main>
+<section id="page-home">
+<div class="heading"><div><h1>A sua vida financeira, num só lugar.</h1><div class="sub">Bem-vindo à experiência de demonstração X-PAY GLOBAL.</div></div><span class="pill">● Sistema de demonstração</span></div>
+<div class="grid">
+<div class="card"><div class="label">Saldo demonstrativo</div><div class="amount goldtxt" id="balance">125.000,00 AOA</div><div class="status">Saldo fictício para testes de interface</div></div>
+<div class="card"><div class="label">Entradas simuladas</div><div class="amount" id="inTotal">0,00 AOA</div><div class="status">Nesta sessão de demonstração</div></div>
+<div class="card"><div class="label">Saídas simuladas</div><div class="amount" id="outTotal">0,00 AOA</div><div class="status">Nenhum dinheiro real movimentado</div></div>
+</div>
+<div class="actions"><button onclick="showPage('transfer')">Fazer transferência de teste</button><button class="gold" onclick="showPage('assistant')">Falar com assistente</button><button class="secondary" onclick="showPage('cards')">Ver cartões de demonstração</button></div>
+<div class="two">
+<div class="card"><div class="section-title" style="margin-top:0">Atividade recente</div><div id="transactions"></div></div>
+<div class="card"><div class="section-title" style="margin-top:0">Visão do produto</div><p class="status">X-PAY GLOBAL foi concebida para ligar pessoas, comerciantes e empresas a serviços financeiros digitais através de parceiros autorizados.</p><div class="tx"><div>Transferências</div><span class="pill">Simulação</span></div><div class="tx"><div>Cartões</div><span class="pill">Demonstração</span></div><div class="tx"><div>Assistente inteligente</div><span class="pill">Respostas básicas</span></div></div>
+</div>
+</section>
+<section id="page-transfer" class="hidden">
+<div class="heading"><div><h1>Transferências</h1><div class="sub">Experimente um fluxo de envio com dados fictícios.</div></div></div>
+<div class="two">
+<div class="card"><div class="section-title" style="margin-top:0">Nova transferência de teste</div>
+<form id="transferForm">
+<div class="field"><label>Destinatário (nome de teste)</label><input id="recipient" required placeholder="Ex.: Maria Silva"></div>
+<div class="field"><label>Identificador do destinatário</label><input id="destination" required placeholder="Telefone, conta ou ID fictício"></div>
+<div class="formrow"><div class="field"><label>Montante (AOA)</label><input id="transferAmount" type="number" min="1" max="125000" required placeholder="5000"></div><div class="field"><label>Tipo de envio</label><select id="transferType"><option>Identificador X-PAY (demo)</option><option>Telefone (demo)</option><option>Conta bancária (demo)</option></select></div></div>
+<button type="submit">Simular transferência</button>
+</form><p class="status">Ao confirmar, o saldo demonstrativo será atualizado apenas no seu navegador.</p></div>
+<div class="card"><div class="section-title" style="margin-top:0">Antes de lançar</div><p class="status">Para transferências reais será necessário integrar um prestador de pagamentos autorizado, definir liquidação, limites, taxas, tratamento de erros e reconciliação, além de cumprir as regras aplicáveis.</p></div>
+</div>
+</section>
+<section id="page-cards" class="hidden">
+<div class="heading"><div><h1>Cartões</h1><div class="sub">Conceito visual de cartões — não são cartões de pagamento válidos.</div></div></div>
+<div class="grid">
+<div class="card" style="min-height:210px;background:linear-gradient(135deg,#10254b,#0b1429 65%,#263e66)"><div class="label">X-PAY GLOBAL · VIRTUAL</div><div style="font-size:26px;letter-spacing:5px;margin:36px 0 20px">•••• •••• •••• 2048</div><div style="display:flex;justify-content:space-between;align-items:end"><div><div class="label">TITULAR DEMO</div><b>CLIENTE X-PAY</b></div><b class="goldtxt">VISA*</b></div><small class="status">*Marca ilustrativa; não representa emissão ou parceria existente.</small></div>
+<div class="card"><div class="label">Cartões futuros</div><h2>Virtual e físico</h2><p class="status">A emissão depende de contrato com banco ou emissor autorizado, processos de identificação do cliente e aprovação das redes relevantes. Esta demonstração não cria um cartão real.</p><button class="secondary" onclick="alert('Registado apenas como interesse nesta demonstração. Não foi enviado a nenhum emissor.')">Manifestar interesse (demo)</button></div>
+</div>
+</section>
+<section id="page-assistant" class="hidden">
+<div class="heading"><div><h1>Assistente X-PAY</h1><div class="sub">Demonstração de ajuda financeira por texto. Não é aconselhamento financeiro profissional.</div></div></div>
+<div class="card"><div class="chat" id="chat"><div class="bubble">Olá! Sou o assistente de demonstração da X-PAY. Posso ajudar com organização de despesas, segurança e explicação das funcionalidades. Não consigo executar pagamentos.</div></div><form id="chatForm" style="display:flex;gap:8px"><input id="chatInput" placeholder="Escreva uma pergunta..." required><button>Enviar</button></form><p class="status">Este assistente usa respostas demonstrativas pré-definidas; ainda não está ligado a um modelo de IA.</p></div>
+</section>
+<section id="page-settings" class="hidden">
+<div class="heading"><div><h1>Perfil e segurança</h1><div class="sub">Configuração local para demonstração.</div></div></div>
+<div class="two"><div class="card"><div class="section-title" style="margin-top:0">Perfil demonstrativo</div><div class="field"><label>Nome de apresentação</label><input id="profileName" value="Cliente X-PAY"></div><div class="field"><label>Idioma</label><select id="language"><option>Português</option><option>English</option></select></div><button onclick="saveProfile()">Guardar neste navegador</button><p class="status" id="profileStatus"></p></div>
+<div class="card"><div class="section-title" style="margin-top:0">Segurança antes do lançamento</div><p class="status">A versão pública real precisará de autenticação segura, verificação de identidade quando exigida, proteção contra fraude, gestão de sessões, registos de auditoria, cifragem, testes de segurança, política de privacidade e processo de resposta a incidentes.</p><div class="pill">Sem login de produção nesta demo</div></div></div>
+</section>
+</main>
+</div>
+<div class="footer">X-PAY GLOBAL — Powered by NØIIR · Conceito demonstrativo · Não processa dinheiro real</div>
+</div>
+<script>
+const initialBalance=125000;
+let state={balance:initialBalance, incoming:0,outgoing:0,tx:[{title:"Conta de demonstração criada",detail:"Saldo fictício inicial",amount:0,type:"info"}]};
+const fmt=n=>new Intl.NumberFormat('pt-PT',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n)+" AOA";
+function showPage(page){document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));document.getElementById('page-'+page).classList.remove('hidden');document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===page));}
+document.querySelectorAll('.nav').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function render(){document.getElementById('balance').textContent=fmt(state.balance);document.getElementById('inTotal').textContent=fmt(state.incoming);document.getElementById('outTotal').textContent=fmt(state.outgoing);let el=document.getElementById('transactions');el.innerHTML='';state.tx.slice().reverse().forEach(t=>{let d=document.createElement('div');d.className='tx';let left=document.createElement('div');left.innerHTML='<b></b><small></small>';left.querySelector('b').textContent=t.title;left.querySelector('small').textContent=t.detail;let right=document.createElement('b');right.textContent=t.amount?((t.type==='in'?'+':'−')+' '+fmt(t.amount)):'—';right.style.color=t.type==='in'?'#90f1cb':(t.type==='out'?'#ffbf9d':'#aebed8');d.append(left,right);el.appendChild(d);});}
+document.getElementById('transferForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number(document.getElementById('transferAmount').value), recipient=document.getElementById('recipient').value.trim(), dest=document.getElementById('destination').value.trim();if(!Number.isFinite(amount)||amount<=0)return alert('Introduza um montante válido.');if(amount>state.balance)return alert('Saldo demonstrativo insuficiente.');if(!confirm(`SIMULAÇÃO: enviar ${fmt(amount)} para ${recipient} (${dest})? Nenhum dinheiro real será enviado.`))return;state.balance-=amount;state.outgoing+=amount;state.tx.push({title:'Transferência simulada',detail:`Para ${recipient} · ${dest}`,amount,type:'out'});render();e.target.reset();alert('Simulação concluída. Nenhum pagamento real foi efetuado.');showPage('home');});
+document.getElementById('chatForm').addEventListener('submit',e=>{e.preventDefault();let input=document.getElementById('chatInput'),q=input.value.trim();if(!q)return;let chat=document.getElementById('chat');let me=document.createElement('div');me.className='bubble me';me.textContent=q;chat.appendChild(me);let a=document.createElement('div');a.className='bubble';let lower=q.toLowerCase();if(lower.includes('transfer')||lower.includes('enviar'))a.textContent='Nesta demonstração pode testar o formulário de transferências. Não enviamos dinheiro real; para isso será necessária uma integração com um prestador autorizado.';else if(lower.includes('cart'))a.textContent='Os cartões apresentados são apenas ilustrativos. A emissão real depende de um emissor autorizado e de contratos aplicáveis.';else if(lower.includes('segur')||lower.includes('senha')||lower.includes('fraude'))a.textContent='A versão de produção deverá incluir autenticação forte, proteção de dados, monitorização de fraude, registos de auditoria e um processo de resposta a incidentes.';else if(lower.includes('saldo')||lower.includes('despesa'))a.textContent='O saldo e as operações desta versão são fictícios. Um produto real precisará de dados vindos de sistemas integrados e reconciliação financeira.';else a.textContent='Posso explicar as funções demonstrativas, segurança, transferências e cartões. Ainda não estou ligado a uma IA real nem a sistemas financeiros.';chat.appendChild(a);chat.scrollTop=chat.scrollHeight;input.value='';});
+function saveProfile(){localStorage.setItem('xpay-demo-name',document.getElementById('profileName').value);localStorage.setItem('xpay-demo-language',document.getElementById('language').value);document.getElementById('profileStatus').textContent='Preferências guardadas apenas neste navegador.';}
+document.getElementById('resetBtn').addEventListener('click',()=>{if(confirm('Reiniciar todos os dados desta demonstração?')){state={balance:initialBalance,incoming:0,outgoing:0,tx:[{title:"Conta de demonstração criada",detail:"Saldo fictício inicial",amount:0,type:"info"}]};render();showPage('home');}});
+render();
+</script>
+</body></html>
