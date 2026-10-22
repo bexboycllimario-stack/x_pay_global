@@ -1,0 +1,2 @@
+# x_pay_global
+X_PAY_GLOBAL_powerd_by_Noiir
